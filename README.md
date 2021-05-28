@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-# README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-=======
 #テーブル設計
 
 ## users テーブル
@@ -59,30 +54,7 @@ application up and running.
 |address     |string     |null: false |
 |building    |string     |null: false |
 |phone       |integer    |null: false |
->>>>>>> Stashed changes
 
-Things you may want to cover:
-
-<<<<<<< Updated upstream
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-=======
 ### Association
 -belongs_to :user
 -belongs_to_active_hash :prefecture
->>>>>>> Stashed changes
