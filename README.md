@@ -53,7 +53,6 @@
 |phone       |string     |null: false       |
 
 ### Association
--belongs_to :product
 -belongs_to :purchase
 -belongs_to_active_hash :prefecture
 
@@ -64,6 +63,5 @@
 |product     |references |foreign_key: true |
 
 ### Association
--belongs_to :user_id
--has_one :delivery
+-belongs_to :user
 -belongs_to :product
