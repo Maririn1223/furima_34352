@@ -39,12 +39,12 @@
 -belongs_to_active_hash :prefecture
 -belongs_to_active_hash :order_date
 -has_one :purchase
+-has_one :delivery
 
 ##  delivery テーブル
 
 |Column      |Type       |Options           |
-|user        |references |foreign_key: true |
-|code        |integer    |null: false       |
+|purchase    |references |foreign_key: true |
 |postal_code |string     |null: false       |
 |prefecture  |integer    |null: false       |
 |city        |string     |null: false       |
@@ -53,9 +53,8 @@
 |phone       |string     |null: false       |
 
 ### Association
--belongs_to :user_id
 -belongs_to :product
--has_one :purchase
+-belongs_to :purchase
 -belongs_to_active_hash :prefecture
 
 ##  purchase テーブル
@@ -66,5 +65,5 @@
 
 ### Association
 -belongs_to :user_id
+-has_one :delivery
 -belongs_to :product
--belongs_to :delivery
