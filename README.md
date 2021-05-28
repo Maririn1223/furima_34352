@@ -39,7 +39,6 @@
 -belongs_to_active_hash :prefecture
 -belongs_to_active_hash :order_date
 -has_one :purchase
--has_one :delivery
 
 ##  delivery テーブル
 
