@@ -16,12 +16,11 @@
 
 ### Association
 -has_many :items
--has_many :purchase
+-has_many :purchases
 
 ## products テーブル
 
 |Column        |Type       |Options                        |
-|image         |           |ActiveStorageで実装             |
 |title         |string     |null: false                    |
 |text          |text       |null: false                    |
 |tag_id        |integer    |null: false                    |
@@ -39,24 +38,24 @@
 -belongs_to_active_hash :charge
 -belongs_to_active_hash :prefecture
 -belongs_to_active_hash :order_date
+-has_one :purchase
 
 ##  delivery テーブル
 
-|Column      |Type       |Options     |
-|user        |references |            |
-|credit      |integer    |null: false |
-|exp_month   |integer    |null: false |
-|exp_day     |integer    |null: false |
-|code        |integer    |null: false |
-|postal_code |integer    |null: false |
-|prefecture  |integer    |null: false |
-|city        |string     |null: false |
-|address     |string     |null: false |
-|building    |string     |null: false |
-|phone       |integer    |null: false |
+|Column      |Type       |Options           |
+|user        |references |foreign_key: true |
+|code        |integer    |null: false       |
+|postal_code |string     |null: false       |
+|prefecture  |integer    |null: false       |
+|city        |string     |null: false       |
+|address     |string     |null: false       |
+|building    |string     |                  |
+|phone       |string     |null: false       |
 
 ### Association
--belongs_to :user
+-belongs_to :user_id
+-belongs_to :product
+-has_one :purchase
 -belongs_to_active_hash :prefecture
 
 ##  purchase テーブル
@@ -66,5 +65,6 @@
 |product     |references |foreign_key: true |
 
 ### Association
--belongs_to :user
+-belongs_to :user_id
 -belongs_to :product
+-belongs_to :delivery
