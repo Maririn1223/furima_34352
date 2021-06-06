@@ -1,8 +1,15 @@
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :tag
+  belongs_to :condition
+  belongs_to :charge
+  belongs_to :prefecture
+  belongs_to :order_date
 
   validates :tag_id, numericality: { other_than: 1 }
+  validates :charge_id, numericality: { other_than: 1 }
+  validates :order_date_id, numericality: { other_than: 1 }
+  validates :condition_id, numericality: { other_than: 1 }
 end
 
   belongs_to :user
