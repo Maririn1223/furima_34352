@@ -24,5 +24,4 @@ end
     validates :prefecture_id
     validates :order_date_id
     validates :price
-  end
 end
