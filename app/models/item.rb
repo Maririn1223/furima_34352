@@ -11,6 +11,7 @@ class Item < ApplicationRecord
   validates :charge_id, numericality: { other_than: 1 }
   validates :order_date_id, numericality: { other_than: 1 }
   validates :condition_id, numericality: { other_than: 1 }
+  validates :prefecture_id, numericality: { other_than: 1 }
 
   belongs_to :user
   has_one_attached :image
