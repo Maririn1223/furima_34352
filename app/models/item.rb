@@ -6,22 +6,24 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :order_date
 
+
   validates :tag_id, numericality: { other_than: 1 }
   validates :charge_id, numericality: { other_than: 1 }
   validates :order_date_id, numericality: { other_than: 1 }
   validates :condition_id, numericality: { other_than: 1 }
-end
 
   belongs_to :user
   has_one_attached :image
 
   with_options presence: true do
     validates :title
+    validates :image
     validates :text
     validates :tag_id
     validates :condition_id
     validates :charge_id
     validates :prefecture_id
     validates :order_date_id
-    validates :price
+    validates :price, numericality: {with: /\A[0-9]+\z/}
+  end
 end
