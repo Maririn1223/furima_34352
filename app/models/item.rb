@@ -27,6 +27,6 @@ class Item < ApplicationRecord
     validates :charge_id
     validates :prefecture_id
     validates :order_date_id
-    validates :price, numericality: {with: /\A[0-9]+\z/, minimum: 300, maximum: 9999999 }
+    validates :price, numericality: {with: /\A[0-9]+\z/, greater_than: 299, less_than: 10000000 }
   end
 end
