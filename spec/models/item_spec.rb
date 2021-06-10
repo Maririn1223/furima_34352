@@ -62,6 +62,51 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
+      it '価格が半角英数混合では登録できない' do
+        @item.price = '500yen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it '価格が半角英語だけでは登録できない' do
+        @item.price = 'yen'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it '価格が299円以下では登録できない' do
+        @item.price = '299'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than 300")
+      end
+      it '価格が10,000,000以上では登録できない' do
+        @item.price = '10000000'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+      end
+      it 'プルダウンで 1 が選択されていると登録できない(状態)' do
+        @item.condition_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Condition must be other than 1")
+      end
+      it 'プルダウンで 1 が選択されていると登録できない（カテゴリー）' do
+        @item.tag_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Tag must be other than 1")
+      end
+      it 'プルダウンで 1 が選択されていると登録できない（配送料）' do
+        @item.charge_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Charge must be other than 1")
+      end
+      it 'プルダウンで 1 が選択されていると登録できない（発送元）' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture must be other than 1")
+      end
+      it 'プルダウンで 1 が選択されていると登録できない（発送日数）' do
+        @item.order_date_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Order date must be other than 1")
+      end
     end
   end
 end

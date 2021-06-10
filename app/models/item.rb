@@ -7,11 +7,13 @@ class Item < ApplicationRecord
   belongs_to :order_date
 
 
-  validates :tag_id, numericality: { other_than: 1 }
-  validates :charge_id, numericality: { other_than: 1 }
-  validates :order_date_id, numericality: { other_than: 1 }
-  validates :condition_id, numericality: { other_than: 1 }
-  validates :prefecture_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :tag_id
+    validates :charge_id
+    validates :order_date_id
+    validates :condition_id
+    validates :prefecture_id
+  end
 
   belongs_to :user
   has_one_attached :image
@@ -25,6 +27,6 @@ class Item < ApplicationRecord
     validates :charge_id
     validates :prefecture_id
     validates :order_date_id
-    validates :price, numericality: {with: /\A[0-9]+\z/}
+    validates :price, numericality: {with: /\A[0-9]+\z/, greater_than: 300, less_than: 9999999 }
   end
 end
