@@ -1,5 +1,7 @@
 class OrdersController < ApplicationController
-  before_action :sold_out_item, only: [:show]
+  before_action :sold_out_item, only: [:show, :create]
+  #before_action :authenticate_user!, only: :create
+  before_action :move_to_index, only: [:create, :edit]
 
   def index
     @item = Item.find(params[:item_id])
@@ -7,7 +9,9 @@ class OrdersController < ApplicationController
   end
 
   def new
+  end
 
+  def show
   end
 
   def create
@@ -19,6 +23,10 @@ class OrdersController < ApplicationController
       redirect_to root_path
     else
       render :index
+    end
+
+    unless current_user.id == @item.user_id
+      redirect_to root_path
     end
   end
 
@@ -40,5 +48,11 @@ class OrdersController < ApplicationController
       card: order_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def move_to_index
+    if @item.order.present? && @user_signed_in?
+      redirect_to action: :index
+    end
   end
 end
