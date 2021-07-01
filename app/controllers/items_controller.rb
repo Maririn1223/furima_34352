@@ -22,9 +22,11 @@ class ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    redirect_to root_path unless user_signed_in?
   end
 
   def edit
+    redirect_to root_path if @item.order.present?
   end
 
   def update
