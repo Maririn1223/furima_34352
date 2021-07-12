@@ -16,12 +16,12 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
-  has_one_attached :image
+  has_many_attached :images
   has_one :order
 
   with_options presence: true do
     validates :title
-    validates :image
+    validates :images
     validates :text
     validates :tag_id
     validates :condition_id
